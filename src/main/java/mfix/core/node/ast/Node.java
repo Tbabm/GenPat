@@ -587,7 +587,9 @@ public abstract class Node implements NodeComparator, Serializable {
             }
             // avoid too much dependency changes
             nodes.add(getDataDependency());
-            nodes.add(_bindingNode.getDataDependency());
+            // Zhongxin: this can be null
+            if (_bindingNode.getDataDependency() != null)
+                nodes.add(_bindingNode.getDataDependency());
             return !fakeChange(getDataDependency(), _bindingNode.getDataDependency());
         }
         return false;
